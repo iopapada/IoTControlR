@@ -1,5 +1,8 @@
-﻿using IoTControlR.ViewModels;
+﻿using IoTControlR.Animations;
+using IoTControlR.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+//using IoTControlR.Animations;
 
 namespace IoTControlR.Views
 {
@@ -11,5 +14,49 @@ namespace IoTControlR.Views
             InitializeComponent();
         }
         public LoginViewModel ViewModel { get; }
+
+        private void OnBackgroundFocus(object sender, RoutedEventArgs e)
+        {
+            DoEffectIn();
+        }
+
+        private void OnForegroundFocus(object sender, RoutedEventArgs e)
+        {
+            DoEffectOut();
+        }
+
+        private EffectMode _currentEffectMode = EffectMode.None;
+
+        private void DoEffectIn(double milliseconds = 1000)
+        {
+            if (_currentEffectMode == EffectMode.Foreground || _currentEffectMode == EffectMode.None)
+            {
+                _currentEffectMode = EffectMode.Background;
+                background.Scale(milliseconds, 1.0, 1.1);
+                background.Blur(milliseconds, 6.0, 0.0);
+                foreground.Scale(500, 1.0, 0.95);
+                foreground.Fade(milliseconds, 1.0, 0.75);
+            }
+        }
+
+        private void DoEffectOut(double milliseconds = 1000)
+        {
+            if (_currentEffectMode == EffectMode.Background || _currentEffectMode == EffectMode.None)
+            {
+                _currentEffectMode = EffectMode.Foreground;
+                background.Scale(milliseconds, 1.1, 1.0);
+                background.Blur(milliseconds, 0.0, 6.0);
+                foreground.Scale(500, 0.95, 1.0);
+                foreground.Fade(milliseconds, 0.75, 1.0);
+            }
+        }
+
+        public enum EffectMode
+        {
+            None,
+            Background,
+            Foreground,
+            Disabled
+        }
     }
 }

@@ -4,4 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:IoTControlR">
 
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!--  Colors  -->
+            <SolidColorBrush x:Key="Information" Color="RoyalBlue" />
+            <SolidColorBrush x:Key="Warning" Color="#ffff00" />
+            <SolidColorBrush x:Key="Error" Color="#ce0e0e" />
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>

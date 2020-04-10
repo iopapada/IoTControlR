@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using IoTControlR.Services;
-
+using IoTControlR.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.ViewManagement;
 
@@ -16,15 +16,16 @@ namespace IoTControlR
         {
             serviceCollection.AddSingleton<ISettingsService, SettingsService>();
 
+            serviceCollection.AddSingleton<IMessageService, MessageService>();
             serviceCollection.AddSingleton<ILogService, LogService>();
             serviceCollection.AddSingleton<ILoginService, LoginService>();
             serviceCollection.AddScoped<INavigationService, NavigationService>();
 
-            //serviceCollection.AddTransient<LoginViewModel>();
-            //serviceCollection.AddTransient<DashboardViewModel>();
+            serviceCollection.AddTransient<LoginViewModel>();
+            serviceCollection.AddTransient<ShellViewModel>();
+            serviceCollection.AddTransient<MainShellViewModel>();
 
-            //serviceCollection.AddTransient<AppLogsViewModel>();
-            //serviceCollection.AddTransient<SettingsViewModel>();
+            //serviceCollection.AddTransient<DashboardViewModel>();
 
             _rootServiceProvider = serviceCollection.BuildServiceProvider();
         }

@@ -122,12 +122,14 @@
     <Compile Include="Configuration\AppSettings.cs" />
     <Compile Include="Configuration\ServiceLocator.cs" />
     <Compile Include="Configuration\Startup.cs" />
+    <Compile Include="Extensions\Animaxtnsions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\StructreServices\ActivationService.cs" />
     <Compile Include="Services\StructreServices\LogService.cs" />
+    <Compile Include="Services\StructreServices\MessageService.cs" />
     <Compile Include="Services\StructreServices\NavigationService.cs" />
     <Compile Include="Services\StructreServices\LoginService.cs" />
     <Compile Include="Services\StructreServices\SettingsService.cs" />
@@ -140,6 +142,12 @@
     <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Shell\MainShellView.xaml.cs">
+      <DependentUpon>MainShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shell\ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SplashScreen\IntroSplash.xaml.cs">
       <DependentUpon>IntroSplash.xaml</DependentUpon>
     </Compile>
@@ -148,11 +156,13 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Assets\AppLog\AppLog.db" />
+    <Content Include="Assets\AppLog\AppLog.db" />
     <None Include="IoTControlR_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\IntroScreen.png" />
+    <Content Include="Assets\IntroScreen.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
@@ -182,6 +192,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Shell\MainShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shell\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SplashScreen\IntroSplash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +214,9 @@
     </PackageReference>
     <PackageReference Include="NETStandard.Library">
       <Version>2.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Win2D.uwp">
+      <Version>1.24.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

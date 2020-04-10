@@ -15,6 +15,16 @@ namespace IoTControlR.Data.DbContexts
         {
             _connectionString = connectionString;
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(_connectionString);
+        }
+
+        public void EnsureCreated()
+        {
+            Database.EnsureCreated();
+        }
+
         public DbSet<AppLog> Logs { get; set; }
 
         public async Task<AppLog> GetLogAsync(long id)

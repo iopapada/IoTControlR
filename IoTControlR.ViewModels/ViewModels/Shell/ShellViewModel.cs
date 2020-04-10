@@ -24,5 +24,25 @@ namespace IoTControlR.ViewModels
             get => _isLocked;
             set => Set(ref _isLocked, value);
         }
+        private bool _isEnabled = true;
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set => Set(ref _isEnabled, value);
+        }
+
+        private string _message = "Ready";
+        public string Message
+        {
+            get => _message;
+            set => Set(ref _message, value);
+        }
+
+        private bool _isError = false;
+        public bool IsError
+        {
+            get => _isError;
+            set => Set(ref _isError, value);
+        }
     }
 }

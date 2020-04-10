@@ -1,6 +1,7 @@
 ﻿using IoTControlR.Services;
 using IoTControlR.ViewModels;
 using IoTControlR.Views;
+
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,10 @@ namespace IoTControlR
 
         private static void ConfigureNavigation()
         {
+            NavigationService.Register<ShellViewModel, ShellView>();
             NavigationService.Register<LoginViewModel, LoginView>();
+            NavigationService.Register<MainShellViewModel, MainShellView>();
+
             //NavigationService.Register<DashboardViewModel, DashboardView>();
             //NavigationService.Register<AppLogsViewModel, AppLogsView>();
             //NavigationService.Register<SettingsViewModel, SettingsView>();

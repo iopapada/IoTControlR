@@ -1,4 +1,6 @@
 ﻿using IoTControlR.ViewModels;
+using IoTControlR.Views;
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
