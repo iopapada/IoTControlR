@@ -122,17 +122,22 @@
     <Compile Include="Configuration\AppSettings.cs" />
     <Compile Include="Configuration\ServiceLocator.cs" />
     <Compile Include="Configuration\Startup.cs" />
+    <Compile Include="Controls\WindowTitle\WindowTitle.cs" />
+    <Compile Include="Converters\ObjectToImageConverter.cs" />
     <Compile Include="Extensions\Animaxtnsions.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\StructreServices\ActivationService.cs" />
+    <Compile Include="Services\StructreServices\CommonService.cs" />
+    <Compile Include="Services\StructreServices\ContextService.cs" />
+    <Compile Include="Services\StructreServices\DialogService.cs" />
     <Compile Include="Services\StructreServices\LogService.cs" />
     <Compile Include="Services\StructreServices\MessageService.cs" />
     <Compile Include="Services\StructreServices\NavigationService.cs" />
     <Compile Include="Services\StructreServices\LoginService.cs" />
     <Compile Include="Services\StructreServices\SettingsService.cs" />
+    <Compile Include="Views\AppLogs\AppLogsView.xaml.cs">
+      <DependentUpon>AppLogsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
@@ -141,6 +146,12 @@
     </Compile>
     <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Organization\OrganizationView.xaml.cs">
+      <DependentUpon>OrganizationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shell\MainShellView.xaml.cs">
       <DependentUpon>MainShellView.xaml</DependentUpon>
@@ -160,7 +171,69 @@
     <None Include="IoTControlR_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\adminRole.png" />
+    <Content Include="Assets\Images\adminRole2.png" />
+    <Content Include="Assets\Images\adminRole3.png" />
+    <Content Include="Assets\Images\alert.png" />
+    <Content Include="Assets\Images\alerts.png" />
+    <Content Include="Assets\Images\alerts4.ico" />
+    <Content Include="Assets\Images\alerts5.png" />
+    <Content Include="Assets\Images\busyhome.png" />
+    <Content Include="Assets\Images\camera.png" />
+    <Content Include="Assets\Images\camera2.ico" />
+    <Content Include="Assets\Images\camera5.ico" />
+    <Content Include="Assets\Images\camera5.png" />
+    <Content Include="Assets\Images\customer.ico" />
+    <Content Include="Assets\Images\db4.ico" />
+    <Content Include="Assets\Images\db6.ico" />
+    <Content Include="Assets\Images\db6.png" />
+    <Content Include="Assets\Images\EN.png" />
+    <Content Include="Assets\Images\GR.png" />
+    <Content Include="Assets\Images\iconapp.ico" />
+    <Content Include="Assets\Images\iconapp2.png" />
+    <Content Include="Assets\Images\kg.png" />
+    <Content Include="Assets\Images\lock.png" />
+    <Content Include="Assets\Images\lock2.ico" />
+    <Content Include="Assets\Images\map.png" />
+    <Content Include="Assets\Images\map2.ico" />
+    <Content Include="Assets\Images\maps3.ico" />
+    <Content Include="Assets\Images\maps4.png" />
+    <Content Include="Assets\Images\maps5.png" />
+    <Content Include="Assets\Images\material.ico" />
+    <Content Include="Assets\Images\next2.ico" />
+    <Content Include="Assets\Images\plan.ico" />
+    <Content Include="Assets\Images\receipt.ico" />
+    <Content Include="Assets\Images\refresh.ico" />
+    <Content Include="Assets\Images\set5.png" />
+    <Content Include="Assets\Images\settings.ico" />
+    <Content Include="Assets\Images\settings2.ico" />
+    <Content Include="Assets\Images\settings4.ico" />
+    <Content Include="Assets\Images\settings4.png" />
+    <Content Include="Assets\Images\settings5.ico" />
+    <Content Include="Assets\Images\start1.ico" />
+    <Content Include="Assets\Images\start1.png" />
+    <Content Include="Assets\Images\start2.ico" />
+    <Content Include="Assets\Images\start2.png" />
+    <Content Include="Assets\Images\start3.ico" />
+    <Content Include="Assets\Images\start3.png" />
+    <Content Include="Assets\Images\start7.png" />
+    <Content Include="Assets\Images\supplier.ico" />
+    <Content Include="Assets\Images\temp.png" />
+    <Content Include="Assets\Images\temp2.png" />
+    <Content Include="Assets\Images\trace.ico" />
+    <Content Include="Assets\Images\tv.png" />
+    <Content Include="Assets\Images\userRole.png" />
+    <Content Include="Assets\Images\userRole2.png" />
+    <Content Include="Assets\Images\visitorRole.png" />
+    <Content Include="Assets\Images\visitorRole2.png" />
+    <Content Include="Assets\Images\visitorRole4.png" />
+    <Content Include="Assets\Images\workerRole.png" />
     <Content Include="Assets\IntroScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
     <Content Include="Assets\Square71x71Logo.scale-100.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -176,9 +249,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\AppLogs\AppLogsView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dashboard\DashboardView.xaml">
       <SubType>Designer</SubType>
@@ -189,6 +262,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Login\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Organization\OrganizationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,7 +301,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
+    <Folder Include="Styles\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Views\Automations\" />
+    <Folder Include="Views\Organization\Parts\" />
+    <Folder Include="Views\Security\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IoTControlR.Data\IoTControlR.Data.csproj">

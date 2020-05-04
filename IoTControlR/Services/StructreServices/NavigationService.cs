@@ -35,12 +35,24 @@ namespace IoTControlR.Services
             }
             throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
         }
+
+        static public Type GetViewModel(Type view)
+        {
+            var type = _viewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
+            if (type == null)
+            {
+                throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
+            }
+            return type;
+        }
+
         public bool IsMainView => CoreApplication.GetCurrentView().IsMain;
 
         public void Initialize(object frame)
         {
             Frame = frame as Frame;
         }
+
         public Frame Frame { get; private set; }
 
         public bool CanGoBack => Frame.CanGoBack;
@@ -51,6 +63,7 @@ namespace IoTControlR.Services
         {
             return Navigate(typeof(TViewModel), parameter);
         }
+
         public bool Navigate(Type viewModelType, object parameter = null)
         {
             if (Frame == null)
@@ -59,6 +72,7 @@ namespace IoTControlR.Services
             }
             return Frame.Navigate(GetView(viewModelType), parameter);
         }
+
         public async Task<int> CreateNewViewAsync(Type viewModelType, object parameter = null)
         {
             int viewId = 0;
@@ -87,6 +101,7 @@ namespace IoTControlR.Services
 
             return 0;
         }
+
         public async Task CloseViewAsync()
         {
             int currentId = ApplicationView.GetForCurrentView().Id;

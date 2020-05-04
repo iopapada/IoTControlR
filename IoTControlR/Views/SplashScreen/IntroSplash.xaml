@@ -2,7 +2,6 @@
     x:Class="IoTControlR.Views.SplashScreen.IntroSplash"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:IoTControlR.Views.SplashScreen"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -11,14 +10,12 @@
         <Image Stretch="None"
                x:Name="introsplashImage"
                Source="ms-appx:///Assets/IntroScreen.png"
-               Canvas.Left="350"
-               Canvas.Top="250" />
+               />
         <ProgressRing x:Name="progressRing"
                       Height="40"
                       Width="40"
                       IsActive="True"
                       Foreground="White"
-                      Canvas.Left="650"
-                      Canvas.Top="550" />
+                      />
     </Canvas>
 </Page>

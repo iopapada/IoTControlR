@@ -3,6 +3,7 @@ using IoTControlR.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace IoTControlR.ViewModels
@@ -39,6 +40,17 @@ namespace IoTControlR.ViewModels
             set { Set(ref _password, value); }
         }
         public ICommand LoginCommand => new RelayCommand(Login);
+
+        public Task LoadAsync(ShellArgs args)
+        {
+            ViewModelArgs = args;
+
+            UserName = SettingsService.UserName ?? args.UserInfo.AccountName;
+            //IsLoginWithPassword = !IsLoginWithWindowsHello;
+            IsBusy = false;
+
+            return Task.CompletedTask;
+        }
         public async void Login()
         {
             IsBusy = true;

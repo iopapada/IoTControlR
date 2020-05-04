@@ -1,25 +1,14 @@
-﻿using IoTControlR.ViewModels;
-using IoTControlR.Services;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+using IoTControlR.ViewModels;
+using IoTControlR.Services;
 
 namespace IoTControlR.Views.SplashScreen
 {
@@ -65,13 +54,9 @@ namespace IoTControlR.Views.SplashScreen
             Window.Current.Activate();
         }
 
-        // Position the extended splash screen image in the same location as the system splash screen image.
         private void Resize()
         {
             if (this.splashScreen == null) return;
-
-            // The splash image's not always perfectly centered. Therefore we need to set our image's position 
-            // to match the original one to obtain a clean transition between both splash screens.
 
             this.introsplashImage.Height = this.splashScreen.ImageLocation.Height;
             this.introsplashImage.Width = this.splashScreen.ImageLocation.Width;

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IoTControlR.ViewModels
 {
@@ -43,6 +44,21 @@ namespace IoTControlR.ViewModels
         {
             get => _isError;
             set => Set(ref _isError, value);
+        }
+
+        public UserInfo UserInfo { get; protected set; }
+
+        public ShellArgs ViewModelArgs { get; protected set; }
+
+        virtual public Task LoadAsync(ShellArgs args)
+        {
+            ViewModelArgs = args;
+            if (ViewModelArgs != null)
+            {
+                UserInfo = ViewModelArgs.UserInfo;
+                NavigationService.Navigate(ViewModelArgs.ViewModel, ViewModelArgs.Parameter);
+            }
+            return Task.CompletedTask;
         }
     }
 }

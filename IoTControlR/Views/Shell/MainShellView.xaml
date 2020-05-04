@@ -4,9 +4,90 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="using:IoTControlR.ViewModels"
+    xmlns:local="using:IoTControlR"
     mc:Ignorable="d">
 
-    <Grid>
+    <Page.Resources>
+        <DataTemplate x:Name="NavigationViewItem" x:DataType="viewmodels:NavigationItem">
+            <Grid Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <FontIcon Glyph="{x:Bind Glyph}" 
+                          HorizontalAlignment="Left" 
+                          FontSize="16" />
+                <TextBlock Grid.Column="1" 
+                           Text="{x:Bind Label}" 
+                           VerticalAlignment="Center" />
+                <TextBlock Grid.Column="2" 
+                           VerticalAlignment="Center" 
+                           Margin="12,0"
+                           Text="{x:Bind Badge, Mode=OneWay}" 
+                           Foreground="{StaticResource Error}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="NavigationViewItemProfile" x:DataType="local:UserInfo">
+            <Grid Width="300" Height="40">
+                <Grid IsTapEnabled="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="32" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4" />
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Margin="-2,9,0,9" HorizontalAlignment="Left">
+                        <PersonPicture ProfilePicture="{x:Bind PictureSource, Converter={StaticResource ObjectToImageConverter}}" DisplayName="{x:Bind DisplayName}" />
+                    </Viewbox>
+                    <TextBlock Grid.Column="1" Text="{x:Bind DisplayName}" VerticalAlignment="Center" />
+                </Grid>
+                <Button Margin="-4,0,0,0" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0" Click="OnLogoff" />
+            </Grid>
+        </DataTemplate>
 
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <NavigationView x:Name="navigationView" 
+                        Background="#EBEBEB"
+                        MenuItemsSource="{x:Bind ViewModel.Items}" 
+                        MenuItemTemplate="{StaticResource NavigationViewItem}"
+                        SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}" 
+                        IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}"
+                        AlwaysShowHeader="False"
+                        IsEnabled="{x:Bind ViewModel.IsEnabled, Mode=OneWay}">
+                        <!--SelectionChanged="OnSelectionChanged"-->
+                        <!--Style="{StaticResource BackButtonNavigationViewStyle}"--> 
+
+            <Grid>
+                <Frame x:Name="frame">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition/>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </Grid>
+
+            <NavigationView.PaneFooter>
+                <NavigationViewItem ContentTemplate="{StaticResource NavigationViewItemProfile}" Content="{x:Bind ViewModel.UserInfo}" />
+            </NavigationView.PaneFooter>
+        </NavigationView>
+
+        <Button x:Name="NavigationViewBackButton"
+                IsEnabled="False"
+                Click="OnNavigationViewBackButton"
+                Content="&#xE72B;"/>
+                <!--Style="{StaticResource PaneToggleButtonStyle}"-->
+
+        <Grid Grid.Row="1" Background="DarkGray">
+            <Rectangle Fill="{StaticResource Error}" Visibility="{x:Bind ViewModel.IsError, Mode=OneWay}" />
+            <TextBlock Margin="6,4" Text="{x:Bind ViewModel.Message, Mode=OneWay}" Foreground="White" FontSize="12" />
+        </Grid>
     </Grid>
 </Page>

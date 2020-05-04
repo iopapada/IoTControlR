@@ -1,7 +1,10 @@
 ﻿using IoTControlR.Animations;
+using IoTControlR.Services;
 using IoTControlR.ViewModels;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 //using IoTControlR.Animations;
 
 namespace IoTControlR.Views
@@ -15,14 +18,22 @@ namespace IoTControlR.Views
         }
         public LoginViewModel ViewModel { get; }
 
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _currentEffectMode = EffectMode.None;
+            await ViewModel.LoadAsync(e.Parameter as ShellArgs);
+            var navigationService = ServiceLocator.Current.GetService<INavigationService>();
+            navigationService.Initialize(Frame);
+        }
+
         private void OnBackgroundFocus(object sender, RoutedEventArgs e)
         {
-            DoEffectIn();
+            //DoEffectIn();
         }
 
         private void OnForegroundFocus(object sender, RoutedEventArgs e)
         {
-            DoEffectOut();
+            //DoEffectOut();
         }
 
         private EffectMode _currentEffectMode = EffectMode.None;

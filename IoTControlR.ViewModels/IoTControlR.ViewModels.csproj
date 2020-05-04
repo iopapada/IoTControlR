@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="ViewModels\Organization\" />
   </ItemGroup>
 
 </Project>

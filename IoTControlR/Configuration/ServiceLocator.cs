@@ -19,13 +19,19 @@ namespace IoTControlR
             serviceCollection.AddSingleton<IMessageService, MessageService>();
             serviceCollection.AddSingleton<ILogService, LogService>();
             serviceCollection.AddSingleton<ILoginService, LoginService>();
+            serviceCollection.AddSingleton<IDialogService, DialogService>();
+
+            serviceCollection.AddScoped<IContextService, ContextService>();
             serviceCollection.AddScoped<INavigationService, NavigationService>();
+            serviceCollection.AddScoped<ICommonServices, CommonServices>();
 
             serviceCollection.AddTransient<LoginViewModel>();
             serviceCollection.AddTransient<ShellViewModel>();
             serviceCollection.AddTransient<MainShellViewModel>();
 
-            //serviceCollection.AddTransient<DashboardViewModel>();
+            serviceCollection.AddTransient<DashboardViewModel>();
+            serviceCollection.AddTransient<AppLogsViewModel>();
+            serviceCollection.AddTransient<SettingsViewModel>();
 
             _rootServiceProvider = serviceCollection.BuildServiceProvider();
         }

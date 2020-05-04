@@ -7,52 +7,50 @@
     xmlns:views="using:IoTControlR.Views"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Border x:Name="background">
+                <Image Source="ms-appx:///Assets/IntroScreen.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.9" />
+            </Border>
+        </Grid>
+
+        <TextBox Grid.RowSpan="2" GotFocus="OnBackgroundFocus" Opacity="0" />
+
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel x:Name="foreground" Grid.Row="1" VerticalAlignment="Center">
+                <Grid GotFocus="OnForegroundFocus">
+                    <views:CredentialsCtrl x:Name="credentialsView" HorizontalAlignment="Center"
+                                            UserName="{x:Bind ViewModel.UserName, Mode=TwoWay}" 
+                                            Password="{x:Bind ViewModel.Password}"
+                                            LoginCommand="{x:Bind ViewModel.LoginCommand}" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" IsHitTestVisible="False" />
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
-            <Grid>
-                <Border x:Name="background">
-                    <Image Source="ms-appx:///Assets/Images/LoginBackground.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.9" />
-                </Border>
-            </Grid>
-
-            <TextBox Grid.RowSpan="2" GotFocus="OnBackgroundFocus" Opacity="0" />
-
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <StackPanel x:Name="foreground" Grid.Row="1" VerticalAlignment="Center">
-                    <Grid GotFocus="OnForegroundFocus">
-                        <views:CredentialsCtrl x:Name="credentialsView" HorizontalAlignment="Center"
-                                               UserName="{x:Bind ViewModel.UserName, Mode=TwoWay}" 
-                                               Password="{x:Bind ViewModel.Password}"
-                                               LoginCommand="{x:Bind ViewModel.LoginCommand}" />
-                    </Grid>
-                </StackPanel>
-            </Grid>
-
-            <Grid Grid.Row="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" IsHitTestVisible="False" />
-
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="1">
-                    <Image Margin="24" 
-                           Source="ms-appx:///Assets/AppLogo.png" 
-                           Width="320" 
-                           HorizontalAlignment="Center" VerticalAlignment="Center" 
-                           Stretch="Uniform" />
-                </Border>
-            </Grid>
+            <Border Grid.Row="1">
+                <Image Margin="24" 
+                        Source="ms-appx:///Assets/AppLogo.png" 
+                        Width="320" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        Stretch="Uniform" />
+            </Border>
         </Grid>
     </Grid>
 </Page>

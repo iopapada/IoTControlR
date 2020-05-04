@@ -1,18 +1,9 @@
-﻿using IoTControlR.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
+using IoTControlR.ViewModels;
+using IoTControlR.Services;
 
 namespace IoTControlR.Views
 {
@@ -22,8 +13,23 @@ namespace IoTControlR.Views
         {
             ViewModel = ServiceLocator.Current.GetService<ShellViewModel>();
             this.InitializeComponent();
+            InitializeNavigation();
         }
 
         public ShellViewModel ViewModel { get; private set; }
+
+        private void InitializeNavigation()
+        {
+            var navigationService = ServiceLocator.Current.GetService<INavigationService>();
+            navigationService.Initialize(frame);
+            var appView = ApplicationView.GetForCurrentView();
+            //appView.Consolidated += OnViewConsolidated;
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await ViewModel.LoadAsync(e.Parameter as ShellArgs);
+            //ViewModel.Subscribe();
+        }
     }
 }
